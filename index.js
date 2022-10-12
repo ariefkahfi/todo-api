@@ -1,7 +1,3 @@
-const express = require("express")
-
-const app = express()
-
-app.get('/', (req, res) => res.end("Hello World"))
+const app = require("./server")
 
 app.listen()
