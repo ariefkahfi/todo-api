@@ -8,6 +8,12 @@ on:
     branches:
       - main
 jobs:
+  print-pr-labels:
+    runs-on: ubuntu-latest
+    env:
+      PR_LABELS: ${{ github.event.pull_request.labels }}
+    steps:
+      - run: echo $PR_LABELS
   run-unit-test:
     if: github.event.label.name == 'backend'
     runs-on: ubuntu-latest
