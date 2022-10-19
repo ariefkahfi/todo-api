@@ -5,6 +5,7 @@ on:
       - main
 jobs:
   run-unit-test:
+    if: github.event.label.name == 'backend'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
