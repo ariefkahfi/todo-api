@@ -12,7 +12,6 @@ describe('Calculate API', () => {
       }
     )
     expect(response.status).toEqual(200)
-    // test
     expect(response.body).toEqual({ data: 45 })
   })
 
