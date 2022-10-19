@@ -13,7 +13,7 @@ jobs:
     steps:
       - env:
           PR_LABELS: ${{ github.event.pull_request.labels }}
-      - run: echo $PR_LABELS
+        run: echo $PR_LABELS
   run-unit-test:
     if: github.event.label.name == 'backend'
     runs-on: ubuntu-latest
