@@ -36,4 +36,15 @@ describe('Calculate API', () => {
     expect(response.status).toEqual(200)
     expect(response.body).toEqual({ data: 0 })
   })
+
+  it('POST /calculate should return 10', async () => {
+    const response = await requestWithSupertest.post('/calculate').send(
+      {
+        number1: null,
+        number2: 10
+      }
+    )
+    expect(response.status).toEqual(200)
+    expect(response.body).toEqual({ data: 10 })
+  })
 })
