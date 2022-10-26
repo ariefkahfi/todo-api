@@ -5,13 +5,23 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test jest --testTimeout=10000",
-    "start": "node index.js"
+    "start": "node index.js",
+    "knex:init": "knex init",
+    "knex:migrate:make": "knex migrate:make",
+    "knex:migrate:latest": "knex migrate:latest",
+    "knex:migrate:up": "knex migrate:up",
+    "knex:migrate:list": "knex migrate:list",
+    "knex:migrate:rollback": "knex migrate:rollback"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "knex": "^2.3.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3"
   },
   "devDependencies": {
     "jest": "^29.1.2",
