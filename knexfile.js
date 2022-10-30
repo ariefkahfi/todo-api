@@ -9,7 +9,9 @@ const {
   TEST_DB_HOST,
   TEST_DB_USER,
   TEST_DB_PASSWORD,
-  TEST_DB_NAME
+  TEST_DB_NAME,
+  DB_PORT,
+  TEST_DB_PORT
 } = process.env
 
 /**
@@ -22,7 +24,8 @@ module.exports = {
       database: DB_NAME,
       user: DB_USER,
       password: DB_PASSWORD,
-      host: DB_HOST
+      host: DB_HOST,
+      port: DB_PORT
     },
     migrations: {
       tableName: 'knex_migrations'
@@ -35,7 +38,8 @@ module.exports = {
       database: TEST_DB_NAME,
       user: TEST_DB_USER,
       password: TEST_DB_PASSWORD,
-      host: TEST_DB_HOST
+      host: TEST_DB_HOST,
+      port: TEST_DB_PORT
     },
     migrations: {
       tableName: 'knex_migrations'
