@@ -16,13 +16,14 @@ jobs:
       TEST_DB_USER: root
       TEST_DB_PASSWORD: ""
       TEST_DB_HOST: localhost
+      NODE_ENV: test
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
       - run: npm i
-      - run: npm run knex:migrate:latest --env test
+      - run: npm run knex:migrate:latest
       - run: npm test
     services:
       database:
