@@ -19,7 +19,7 @@ app.post('/api/v1/todos', async (req, res) => {
 
 app.get('/api/v1/todos', async (req, res) => {
   const result = await service.listTodos()
-  return result
+  return res.status(200).json(result)
 })
 
 app.post('/calculate', (req, res) => {

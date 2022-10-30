@@ -17,7 +17,7 @@ const {
  */
 module.exports = {
   development: {
-    client: 'mysql',
+    client: 'mysql2',
     connection: {
       database: DB_NAME,
       user: DB_USER,
@@ -30,7 +30,7 @@ module.exports = {
   },
 
   test: {
-    client: 'mysql',
+    client: 'mysql2',
     connection: {
       database: TEST_DB_NAME,
       user: TEST_DB_USER,

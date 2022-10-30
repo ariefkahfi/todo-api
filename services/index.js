@@ -10,7 +10,7 @@ const {
 
 
 const knex = require('knex')({
-  client: 'mysql',
+  client: 'mysql2',
   connection: {
     host: DB_HOST,
     port: DB_PORT,
@@ -20,15 +20,21 @@ const knex = require('knex')({
   }
 });
 
-const createTodo = (payload = {}) => {
-  return knex('todos').insert(payload)
+const createTodo = async (payload = {}) => {
+  const result = await knex('todos').insert(payload)
+  const id = result[0]
+
+  const todo = await knex("todos").where("id", id).first()
+
+  return todo
 }
 
 const listTodos = () => {
-  return knex.select().table('todos')
+  return knex.select("id", "title", "description").from('todos')
 }
 
 module.exports = {
+  knex,
   createTodo,
   listTodos
 }
