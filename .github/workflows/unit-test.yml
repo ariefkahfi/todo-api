@@ -18,11 +18,14 @@ jobs:
       TEST_DB_HOST: localhost
       NODE_ENV: test
     steps:
+      - uses: actions/setup-python@v4
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
       - run: npm i
+      - run: pip install wait-for-it
+      - run: wait-for-it --service localhost:3306 --timeout 30 -- echo "MySQL server is ready"
       - run: npm run knex:migrate:latest
       - run: npm test
     services:
