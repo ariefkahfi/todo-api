@@ -11,10 +11,23 @@ jobs:
   run-unit-test:
     if: contains(github.event.pull_request.labels.*.name, 'backend')
     runs-on: ubuntu-latest
+    env:
+      DB_HOST: localhost
+      DB_USER: root
+      DB_NAME: todo
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
       - run: npm i
+      - run: npm run knex:migrate:latest
       - run: npm test
+    services:
+      database:
+        image: mysql:8.0.28
+        env:
+          MYSQL_ROOT_PASSWORD: my-secret-pw
+          MYSQL_DATABASE: todo
+        ports:
+          - 3306:3306

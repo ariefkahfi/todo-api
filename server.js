@@ -5,7 +5,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/api/v1/todos', async (req, res) => {
+app.post('/api/v1/todos', async (req, res) => {
   try {
     const payload = req.body
 
@@ -17,7 +17,7 @@ app.get('/api/v1/todos', async (req, res) => {
   }
 })
 
-app.post('/api/v1/todos', async (req, res) => {
+app.get('/api/v1/todos', async (req, res) => {
   const result = await service.listTodos()
   return result
 })

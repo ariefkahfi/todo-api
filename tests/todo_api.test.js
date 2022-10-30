@@ -12,10 +12,17 @@ describe('Todo API', () => {
       }
     )
     expect(response.status).toEqual(200)
-    expect(response.body).toEqual({ data: 45 })
+    expect(response.body).toEqual(
+      {
+        data: {
+          title: 'todo 1',
+          description: 'desc 1'
+        }
+      }
+    )
   })
 
-  it('[POST /todos] and [POST /todos] should create new data and list latest data', async () => {
+  it('[POST /todos] and [GET /todos] should create new data and list latest data', async () => {
     let response = await requestWithSupertest.post('/api/v1/todos').send(
       {
         title: 'todo 1',
@@ -23,9 +30,25 @@ describe('Todo API', () => {
       }
     )
     expect(response.status).toEqual(200)
-    expect(response.body).toEqual({ data: 45 })
+    expect(response.body).toEqual(
+      {
+        data: {
+          title: 'todo 1',
+          description: 'desc 1'
+        }
+      }
+    )
 
     response = await requestWithSupertest.get('/api/v1/todos').send()
     expect(response.status).toEqual(200)
+    expect(response.body.length).toEqual(1)
+    expect(response.body).toEqual(
+      [
+        {
+          title: 'todo 1',
+          description: 'desc 1'
+        }
+      ]
+    )
   })
 })
