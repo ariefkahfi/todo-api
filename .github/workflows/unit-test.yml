@@ -11,10 +11,28 @@ jobs:
   run-unit-test:
     if: contains(github.event.pull_request.labels.*.name, 'backend')
     runs-on: ubuntu-latest
+    env:
+      TEST_DB_NAME: todo
+      TEST_DB_USER: root
+      TEST_DB_PASSWORD: my-secret-pw
+      TEST_DB_HOST: localhost
+      NODE_ENV: test
     steps:
+      - uses: actions/setup-python@v4
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
       - run: npm i
+      - run: pip install wait-for-it
+      - run: wait-for-it --service localhost:3306 --timeout 30 -- echo "MySQL server is ready"
+      - run: npm run knex:migrate:latest
       - run: npm test
+    services:
+      database:
+        image: mysql:8.0.28
+        env:
+          MYSQL_ROOT_PASSWORD: my-secret-pw
+          MYSQL_DATABASE: todo
+        ports:
+          - 3306:3306
