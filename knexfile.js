@@ -11,7 +11,8 @@ const {
   TEST_DB_PASSWORD,
   TEST_DB_NAME,
   DB_PORT,
-  TEST_DB_PORT
+  TEST_DB_PORT,
+  DATABASE_URL
 } = process.env
 
 /**
@@ -31,7 +32,6 @@ module.exports = {
       tableName: 'knex_migrations'
     }
   },
-
   test: {
     client: 'mysql2',
     connection: {
@@ -41,6 +41,13 @@ module.exports = {
       host: TEST_DB_HOST,
       port: TEST_DB_PORT
     },
+    migrations: {
+      tableName: 'knex_migrations'
+    }
+  },
+  production: {
+    client: 'mysql2',
+    connection: DATABASE_URL,
     migrations: {
       tableName: 'knex_migrations'
     }
