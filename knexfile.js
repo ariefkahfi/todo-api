@@ -11,7 +11,8 @@ const {
   TEST_DB_PASSWORD,
   TEST_DB_NAME,
   DB_PORT,
-  TEST_DB_PORT
+  TEST_DB_PORT,
+  DATABASE_URL
 } = process.env
 
 /**
