@@ -30,9 +30,10 @@ jobs:
       - run: npm test
     services:
       database:
-        image: mysql:8.0.28
+        image: postgres:14.2
         env:
-          MYSQL_ROOT_PASSWORD: my-secret-pw
-          MYSQL_DATABASE: todo
+          POSTGRES_PASSWORD: my-secret-pw
+          POSTGRES_DB: todo
+          POSTGRES_USER: root
         ports:
-          - 3306:3306
+          - 5432:5432
