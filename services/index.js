@@ -10,8 +10,9 @@ const knex = require('knex')({
 });
 
 const createTodo = async (payload = {}) => {
-  const result = await knex('todos').insert(payload)
-  const id = result[0]
+  const results = await knex('todos').returning('id').insert(payload)
+  const result = results[0]
+  const id = result?.id
 
   const todo = await knex("todos").where("id", id).first()
 

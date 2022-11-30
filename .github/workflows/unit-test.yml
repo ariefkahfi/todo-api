@@ -25,14 +25,15 @@ jobs:
           node-version: 16
       - run: npm i
       - run: pip install wait-for-it
-      - run: wait-for-it --service localhost:3306 --timeout 30 -- echo "MySQL server is ready"
+      - run: wait-for-it --service localhost:5432 --timeout 30 -- echo "PostgreSQL server is ready"
       - run: npm run knex:migrate:latest
       - run: npm test
     services:
       database:
-        image: mysql:8.0.28
+        image: postgres:14.2
         env:
-          MYSQL_ROOT_PASSWORD: my-secret-pw
-          MYSQL_DATABASE: todo
+          POSTGRES_PASSWORD: my-secret-pw
+          POSTGRES_DB: todo
+          POSTGRES_USER: root
         ports:
-          - 3306:3306
+          - 5432:5432

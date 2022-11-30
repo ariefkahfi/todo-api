@@ -20,7 +20,7 @@ const {
  */
 module.exports = {
   development: {
-    client: 'mysql2',
+    client: 'pg',
     connection: {
       database: DB_NAME,
       user: DB_USER,
@@ -33,7 +33,7 @@ module.exports = {
     }
   },
   test: {
-    client: 'mysql2',
+    client: 'pg',
     connection: {
       database: TEST_DB_NAME,
       user: TEST_DB_USER,
@@ -46,7 +46,7 @@ module.exports = {
     }
   },
   production: {
-    client: 'mysql2',
+    client: 'pg',
     connection: DATABASE_URL,
     migrations: {
       tableName: 'knex_migrations'
