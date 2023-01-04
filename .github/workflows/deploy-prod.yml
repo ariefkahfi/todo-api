@@ -8,10 +8,20 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - uses: actions/checkout@v3
-      - uses: akhileshns/heroku-deploy@v3.12.12
+      - name: Upload project to remote server
+        uses: burnett01/rsync-deployments@5.2.1
         with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
-          heroku_email: ${{ secrets.HEROKU_EMAIL }}
-      - run: heroku run npm run knex:migrate:latest
+          switches: -avzr --delete
+          path: src/
+          remote_path: /var/www/html/
+          remote_host: example.com
+          remote_user: debian
+          remote_key: ${{ secrets.DEPLOY_KEY }}
+      - name: Migrate database
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: npm run knex:migrate:latest
