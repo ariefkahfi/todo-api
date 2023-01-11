@@ -13,7 +13,7 @@ jobs:
       - name: Upload project to remote server
         uses: burnett01/rsync-deployments@5.2.1
         with:
-          switches: -avzr --delete
+          switches: -avzr --delete --exclude=.git/ --exclude=.github
           remote_path: ${{ secrets.REMOTE_PATH }}
           remote_host: ${{ secrets.HOST }}
           remote_user: ${{ secrets.USERNAME }}
@@ -25,4 +25,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            ls apps
+            cd apps
+            ls -a
+            npm i
