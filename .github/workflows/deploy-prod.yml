@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
+      - name: Checkout to repository
+        uses: actions/checkout@v3
       - name: Upload project to remote server
         uses: burnett01/rsync-deployments@5.2.1
         with:
