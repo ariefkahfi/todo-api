@@ -1,5 +1,6 @@
 // Update with your config settings.
 require('dotenv').config()
+const fs = require("fs")
 
 const {
   DB_HOST,
@@ -12,7 +13,8 @@ const {
   TEST_DB_NAME,
   DB_PORT,
   TEST_DB_PORT,
-  DATABASE_URL
+  DATABASE_URL,
+  CERTIFICATE_URL
 } = process.env
 
 /**
@@ -47,7 +49,12 @@ module.exports = {
   },
   production: {
     client: 'pg',
-    connection: DATABASE_URL,
+    connection: {
+      connectionString: DATABASE_URL,
+      ssl: {
+        ca: fs.readFileSync(CERTIFICATE_URL)
+      }
+    },
     migrations: {
       tableName: 'knex_migrations'
     }
