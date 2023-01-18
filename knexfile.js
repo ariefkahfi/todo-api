@@ -52,7 +52,7 @@ module.exports = {
     connection: {
       connectionString: DATABASE_URL,
       ssl: {
-        ca: fs.readFileSync(CERTIFICATE_URL)
+        rejectUnauthorized: false
       }
     },
     migrations: {
