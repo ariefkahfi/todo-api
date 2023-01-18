@@ -32,6 +32,6 @@ app.post('/calculate', (req, res) => {
   return res.status(200).json(jsonData)
 })
 
-app.get('/', (req, res) => res.json({ data: "Hello World updated" }))
+app.get('/', (req, res) => res.json({ data: "Hello World updated 2" }))
 
 module.exports = app

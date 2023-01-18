@@ -38,4 +38,5 @@ jobs:
           script: |
             cd apps
             pm2 start --name todo-api index.js
+            pm2 restart todo-api
             pm2 status
