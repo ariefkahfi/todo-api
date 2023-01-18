@@ -12,7 +12,8 @@
     "knex:migrate:latest": "knex migrate:latest",
     "knex:migrate:up": "knex migrate:up",
     "knex:migrate:list": "knex migrate:list",
-    "knex:migrate:rollback": "knex migrate:rollback"
+    "knex:migrate:rollback": "knex migrate:rollback",
+    "knex:migrate:production": "NODE_ENV=production knex migrate:latest"
   },
   "keywords": [],
   "author": "",
