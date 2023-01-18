@@ -29,3 +29,13 @@ jobs:
             ls -a
             npm i
             npm run knex:migrate:production
+      - name: Start App
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd apps
+            pm2 start --name todo-api index.js
+            pm2 status
