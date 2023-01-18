@@ -28,4 +28,4 @@ jobs:
             cd apps
             ls -a
             npm i
-            npm run knex:migrate:latest
+            npm run knex:migrate:latest --env production
